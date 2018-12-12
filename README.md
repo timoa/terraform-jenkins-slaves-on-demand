@@ -2,13 +2,25 @@
 
 Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 
-This template includes:
+## Includes
+
+### Network
 
 * Custom AWS Virtual Private Cloud (VPC)
 * Subnet with the Jenkins master + Internet gateway (public IP)
 * Subnet where the Jenkins slaves are launched (not exposed to Internet)
+
+### Storage
+
 * AWS Elastic File System (EFS) for the Jenkins master configuration and data
-* AWS AMI for the Jenkins server
-* AWS AMI (minimal) for the Jenkins slaves
-* AWS EC2 template for the Jenkins master
-* AWS EC2 templates for the Jenkins slaves (different instance sizes)
+
+### Jenkins Master
+
+* AWS EC2 template
+* AWS AMI
+* NGINX reverse-proxy configuration
+
+### Jenkins Slaves
+
+* AWS EC2 templates (different instance sizes)
+* AWS AMI (minimal)
