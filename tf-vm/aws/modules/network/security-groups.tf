@@ -10,14 +10,14 @@ module "jenkins_master_sg" {
       from_port   = 80
       to_port     = 80
       protocol    = "tcp"
-      description = "Jenkins HTTP port"
+      description = "Jenkins master HTTP port"
       cidr_blocks = "0.0.0.0/0"
     },
     {
       from_port   = 443
       to_port     = 443
       protocol    = "tcp"
-      description = "Jenkins HTTPS port"
+      description = "Jenkins master HTTPS port"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
