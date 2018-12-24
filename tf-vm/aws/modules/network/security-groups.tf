@@ -22,6 +22,16 @@ module "jenkins_master_sg" {
     },
   ]
 
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      description = "Internet"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
+
   tags {
     Terraform    = "true"
     Name         = "jenkins-master-sg-${var.env}"
@@ -42,10 +52,19 @@ module "jenkins_slaves_sg" {
       to_port     = 22
       protocol    = "tcp"
       description = "SSH from Jenkins master"
-      cidr_blocks = "10.0.1.0/24"
+      cidr_blocks = "${var.public_subnet}"
     },
   ]
 
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      description = "Internet"
+      cidr_blocks = "0.0.0.0/0"
+    }
+  ]
   tags {
     Terraform    = "true"
     Name         = "jenkins-slaves-sg-${var.env}"

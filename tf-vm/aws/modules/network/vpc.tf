@@ -16,7 +16,8 @@ module "vpc" {
   private_subnets = ["${var.private_subnet}"]
   
   enable_dns_hostnames = true
-  enable_nat_gateway = false
+  enable_nat_gateway = true
+  single_nat_gateway = true
   enable_vpn_gateway = false
 
   # Tags
