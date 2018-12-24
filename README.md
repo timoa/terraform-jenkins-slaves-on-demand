@@ -54,6 +54,10 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 * Install Jenkins
 * Configure Jenkins with the necessary plugins
 * Create the EC2 slaves templates
+* Elastic IP for Jenkins master
+* Let's Encrypt SSL certificate for the Jenkins master
+* Use an existing VPC ID
+* Use an existing EFS ID
 
 
 [badge-license]: https://img.shields.io/badge/License-MIT-blue.svg
