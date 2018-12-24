@@ -18,7 +18,9 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 
 * Public subnet
 * Internet gateway
-* Security groups to access the Jenkins UI
+* NAT gateway
+* Security group to allow access the Jenkins UI
+* Security group to allow access to EFS storage from Jenkins master
 
 #### Jenkins slaves
 
@@ -58,7 +60,6 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 * Let's Encrypt SSL certificate for the Jenkins master
 * Use an existing VPC ID
 * Use an existing EFS ID
-
 
 [badge-license]: https://img.shields.io/badge/License-MIT-blue.svg
 [link-license]: https://raw.githubusercontent.com/timoa/terraform-jenkins-slaves-on-demand/master/LICENSE
