@@ -45,6 +45,17 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 * EBS root volume for all instances
 * AWS Elastic File System (EFS) for the Jenkins master configuration and data
 
+## TODO
+
+* Create the cloud-init directives
+* Mount the EFS volume
+* Encrypt EFS at rest + configure encryption in transit
+* Encrypt root volume
+* Install Jenkins
+* Configure Jenkins with the necessary plugins
+* Create the EC2 slaves templates
+
+
 [badge-license]: https://img.shields.io/badge/License-MIT-blue.svg
 [link-license]: https://raw.githubusercontent.com/timoa/terraform-jenkins-slaves-on-demand/master/LICENSE
 [image-infrastructure-diagram]: https://github.com/timoa/terraform-jenkins-slaves-on-demand/raw/master/doc/images/diagram-jenkins-slaves-on-demand.png
