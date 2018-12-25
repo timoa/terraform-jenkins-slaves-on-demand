@@ -35,12 +35,16 @@ module "jenkins_master_ec2" {
   # Public SSH key
   key_name = "${aws_key_pair.jenkins-master-keypair.key_name}"
 
+  # user data
+  user_data = "${data.template_cloudinit_config.cloudinit-jenkins-master.rendered}"
+
   # Metadata
   tags {
     Terraform    = "true"
     Name         = "jenkins-master-ec2-${var.env}"
     Environmnent = "${var.env}"
   }
+
 }
 
 output "instance_id" {

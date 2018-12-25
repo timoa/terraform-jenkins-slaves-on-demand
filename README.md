@@ -47,13 +47,41 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 * EBS root volume for all instances
 * AWS Elastic File System (EFS) for the Jenkins master configuration and data
 
+## How to install
+
+Clone this Git repository and go to the `tf-vm/aws` folder (only type and provider for the moment)
+
+```bash
+cd terraform-jenkins-slaves-on-demand
+cd tf-vm/aws
+```
+
+Start by install the dependencies
+
+```bash
+terraform init
+```
+
+Run `terraform plan` to see which resources will be created and save the generated execution plan
+
+```bash
+terraform plan --out=jenkins.tfplan
+```
+
+Apply the Terraform plan
+
+```bash
+terraform apply jenkins.tfplan
+```
+
 ## TODO
 
-* Create the cloud-init directives
-* Mount the EFS volume
+* BAckend to S3 + lock
+* Mount the EFS volume (EFS creation can take 2 min)
+* Create KMS key for encryption
 * Encrypt EFS at rest + configure encryption in transit
 * Encrypt root volume
-* Install Jenkins
+* Install Jenkins (add repo + install)
 * Configure Jenkins with the necessary plugins
 * Create the EC2 slaves templates
 * Elastic IP for Jenkins master
