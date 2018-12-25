@@ -52,9 +52,11 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 Clone this Git repository and go to the `tf-vm/aws` folder (only type and provider for the moment)
 
 ```bash
-cd terraform-jenkins-slaves-on-demand
-cd tf-vm/aws
+git clone git@github.com:timoa/terraform-jenkins-slaves-on-demand.git
+cd terraform-jenkins-slaves-on-demand/tf-vm/aws
 ```
+
+You can change some of the variables in the `variables.tf`. See the [configuration section](#configuration)
 
 Start by install the dependencies
 
@@ -74,9 +76,22 @@ Apply the Terraform plan
 terraform apply jenkins.tfplan
 ```
 
+## Configuration
+
+| Variable | Default value | Description |
+|----------|---------------|-------------|
+| aws_region | us-east-1 | AWS Region |
+| env | dev | Name of the environment |
+| vpc_cidr | 10.0.0.0/16 | VPC CIDR |
+| public_subnet | 10.0.1.0/24 | Public subnet |
+| private_subnet | 10.0.2.0/24 | Private subnet |
+| instance_type | t3.large | Instance type |
+| ebs_optimized | true | EBS optimized |
+| path_public_key | jenkins-master-key.pub | Path to the SSH public key for Jenkins master |
+
 ## TODO
 
-* BAckend to S3 + lock
+* Terraform backend with S3 + lock
 * Mount the EFS volume (EFS creation can take 2 min)
 * Create KMS key for encryption
 * Encrypt EFS at rest + configure encryption in transit
