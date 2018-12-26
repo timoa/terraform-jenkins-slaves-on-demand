@@ -96,9 +96,9 @@ terraform apply jenkins.tfplan
 * Create KMS key for encryption
 * Encrypt EFS at rest + configure encryption in transit
 * Encrypt root volume
-* Install Jenkins (add repo + install)
 * Configure Jenkins with the necessary plugins
-* Create the EC2 slaves templates
+* Create the Jenkins master IAM role (EC2 full access)
+* Create the Jenkins slaves AMI
 * Elastic IP for Jenkins master
 * Let's Encrypt SSL certificate for the Jenkins master
 * Use an existing VPC ID
