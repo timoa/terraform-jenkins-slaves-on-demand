@@ -2,7 +2,7 @@ module "jenkins_master_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "jenkins-master-sg-${var.env}"
-  description = "security group that allows Jenkins master access and all egress traffic"
+  description = "Security group that allows Jenkins master access and all egress traffic"
   vpc_id      = "${module.vpc.vpc_id}"
 
   ingress_with_cidr_blocks = [
@@ -43,7 +43,7 @@ module "jenkins_slaves_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "jenkins-slaves-sg-${var.env}"
-  description = "security group that allows Jenkins master access only and all egress traffic"
+  description = "Security group that allows Jenkins master access only and all egress traffic"
   vpc_id      = "${module.vpc.vpc_id}"
 
   ingress_with_cidr_blocks = [
