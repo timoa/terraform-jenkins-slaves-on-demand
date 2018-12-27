@@ -1,5 +1,5 @@
+# Latest Amazon Linux 2 AMI with SSD (GP2) uses for the Jenkins master
 data "aws_ami" "amazon_linux_2" {
-    description = "Latest Amazon Linux 2 AMI with SSD (GP2) uses for the Jenkins master"
     most_recent = true
 
     filter {
@@ -19,8 +19,8 @@ data "aws_ami" "amazon_linux_2" {
   }
 }
 
+# Latest Amazon Linux 2 AMI minimal
 data "aws_ami" "amazon_linux_2_minimal" {
-    description = "Latest Amazon Linux 2 AMI"
     most_recent = true
 
     filter {
