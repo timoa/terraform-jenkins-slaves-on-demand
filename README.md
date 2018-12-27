@@ -99,7 +99,7 @@ terraform apply jenkins.tfplan
 * Configure Jenkins with the necessary plugins
 * Create the Jenkins master IAM role (EC2 full access)
 * Create the Jenkins slaves AMI
-* Elastic IP for Jenkins master
+* Create Elastic IP for the Jenkins master
 * Let's Encrypt SSL certificate for the Jenkins master
 * Use an existing VPC ID
 * Use an existing EFS ID
