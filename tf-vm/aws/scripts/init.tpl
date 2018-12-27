@@ -14,7 +14,11 @@ yum_repos:
 
 packages:
   - amazon-efs-utils
-  - jenkins
+
+# timezone: set the timezone
+timezone: UTC
+
+final_message: "System boot (via cloud-init) is COMPLETE, after $UPTIME seconds. Finished at $TIMESTAMP"
 
 output:
   all: '| tee -a /var/log/cloud-init-output.log'
