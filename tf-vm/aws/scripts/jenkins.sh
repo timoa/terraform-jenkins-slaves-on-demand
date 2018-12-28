@@ -10,6 +10,10 @@ yum remove java-1.7.0-openjdk
 yum install -y jenkins
 
 # TODO: Configure the path to /mnt/efs
+# TODO: Pre-configure Jenkins
 
 # Start Jenkins
 service jenkins start
+
+# Make Jenkins starts at boot
+chkconfig --add jenkins

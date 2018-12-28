@@ -48,5 +48,8 @@ EOF
 # Start NGINX
 service nginx start
 
+# Make NGINX starts at boot
+chkconfig nginx on
+
 # Cleanup
 rm -Rf /run/yum
