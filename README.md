@@ -99,6 +99,7 @@ This variables can be changed under the `variables.tf` file.
 ## TODO
 
 * Terraform backend with S3 + lock
+* Add EC2 health check URL for the Jenkins master
 * Encrypt EFS encryption in transit
 * Encrypt root volume
 * Mount the EFS volume (EFS creation can take 2 min)
