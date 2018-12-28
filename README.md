@@ -99,8 +99,7 @@ This variables can be changed under the `variables.tf` file.
 ## TODO
 
 * Terraform backend with S3 + lock
-* Use default KMS key for encryption
-* Encrypt EFS at rest + configure encryption in transit
+* Encrypt EFS encryption in transit
 * Encrypt root volume
 * Mount the EFS volume (EFS creation can take 2 min)
 * Configure Jenkins with the necessary plugins

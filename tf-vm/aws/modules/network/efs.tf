@@ -11,6 +11,8 @@ module "efs" {
   subnets            = ["${module.vpc.public_subnets}"]
   availability_zones = ["${var.aws_region}a"]
   security_groups    = ["${module.jenkins_master_sg.this_security_group_id}"]
+
+  encrypted          = true
 }
 
 output "efs_id" {
