@@ -7,16 +7,12 @@ module "jenkins_master_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
+      rule        = "http-80-tcp"
       description = "Jenkins master HTTP port"
       cidr_blocks = "0.0.0.0/0"
     },
     {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
+      rule        = "https-443-tcp"
       description = "Jenkins master HTTPS port"
       cidr_blocks = "0.0.0.0/0"
     },
@@ -48,9 +44,7 @@ module "jenkins_slaves_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
+      rule        = "ssh-tcp"
       description = "SSH from Jenkins master"
       cidr_blocks = "${var.public_subnet}"
     },
