@@ -1,6 +1,7 @@
 
 
 # Configurable variables from the environment folder
+variable "aws_region" {}
 variable "env" {}
 variable "vpc_id" {}
 variable "security_group_id" {}
@@ -25,7 +26,7 @@ module "jenkins_master_ec2" {
   instance_count = 1
 
   name                        = "jenkins-master-ec2-${var.env}"
-  ami                         = "${data.aws_ami.amazon_linux_2.id}"
+  ami                         = "${aws_ami_copy.amzn2_encrypted_ami.id}"
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${var.public_subnets[0]}"
   vpc_security_group_ids      = ["${var.security_group_id}"]
