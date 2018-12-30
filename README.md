@@ -96,12 +96,18 @@ This variables can be changed under the `variables.tf` file.
 | ebs_optimized | true | EBS optimized |
 | path_public_key | jenkins-master-key.pub | Path to the SSH public key for Jenkins master |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| jenkins_master_public_ip | Jenkins master public IP |
+| jenkins_master_public_dns | Jenkins master public DNS |
+
 ## TODO
 
 * Terraform backend with S3 + lock
 * Add EC2 health check URL for the Jenkins master
 * Encrypt EFS in transit (SSL)
-* Encrypt root volume
 * Mount the EFS volume (EFS creation can take 2 min)
 * Configure Jenkins with the necessary plugins
 * Create the Jenkins master IAM role (EC2 full access)
