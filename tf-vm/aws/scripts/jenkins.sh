@@ -11,6 +11,7 @@ yum install -y jenkins
 
 # TODO: Configure the path to /mnt/efs
 # TODO: Pre-configure Jenkins
+# TODO: Install required plugins (EC2)
 
 # Start Jenkins
 service jenkins start

@@ -2,6 +2,10 @@ data "template_file" "init-script" {
   template = "${file("./scripts/init.tpl")}"
 }
 
+data "template_file" "efs-script" {
+  template = "${file("scripts/efs.sh")}"
+}
+
 data "template_file" "jenkins-script" {
   template = "${file("scripts/jenkins.sh")}"
 }
@@ -22,13 +26,19 @@ data "template_cloudinit_config" "cloudinit-jenkins-master" {
     content      = "${data.template_file.init-script.rendered}"
   }
 
-  # 2. Install and configure Jenkins master
+  # 2. Mount the EFS volume on the Jenkins master
+  part {
+    content_type = "text/x-shellscript"
+    content      = "${data.template_file.efs-script.rendered}"
+  }
+
+  # 3. Install and configure Jenkins master
   part {
     content_type = "text/x-shellscript"
     content      = "${data.template_file.jenkins-script.rendered}"
   }
 
-  # 3. Install and configure NGINX as reverse-proxy
+  # 4. Install and configure NGINX as reverse-proxy
   part {
     content_type = "text/x-shellscript"
     content      = "${data.template_file.nginx-script.rendered}"
