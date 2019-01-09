@@ -39,7 +39,7 @@ data "aws_ami" "amzn2" {
   }
 }
 
-# Latest Amazon Linux 2 AMI minimal
+# Latest Amazon Linux 2 AMI minimal (For the Jenkins slaves)
 data "aws_ami" "amzn2_minimal" {
   most_recent = true
 

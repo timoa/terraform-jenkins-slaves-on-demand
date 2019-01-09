@@ -1,3 +1,21 @@
+/**
+ * Usage:
+ *
+ * module "instance" {
+ *   source = "./modules/network"
+ *   
+ *   # Global
+ *   aws_region        = "${var.aws_region}"
+ *   env               = "${var.env}"
+ *   
+ *   # VPC
+ *   vpc_cidr          = "${var.vpc_cidr}"
+ *   public_subnet     = "${var.public_subnet}"
+ *   private_subnet    = "${var.private_subnet}"
+ *
+ * }
+ */
+ 
 variable "aws_region" {}
 variable "env" {}
 variable "vpc_cidr" {}
