@@ -4,12 +4,12 @@
 
 variable "aws_region" {
   description = "Region where to deploy the Jenkins master and slaves"
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
 variable "env" {
   description = "Environment name to tag and suffix the infrastructure composants"
-  default = "dev"
+  default     = "dev"
 }
 
 #################
@@ -34,19 +34,28 @@ variable "private_subnet" {
 
 variable "instance_type" {
   description = "Instance type for the Jenkins master"
-  default = "t3.large"
+  default     = "t3.large"
 }
 
 variable "ebs_optimized" {
   description = "Indicates whether EBS optimization (additional, dedicated throughput between Amazon EC2 and Amazon EBS,) has been enabled for the instance."
-  default = true
+  default     = true
 }
 
 variable "path_public_key" {
   description = "Path to the Jenkins master public key"
-  default = "jenkins-master-key.pub"
+  default     = "jenkins-master-key.pub"
 }
 
 #################
-# Storage
+# Tags
 #################
+
+variable "tags" {
+  description = "Tags to apply to all the resources"
+  type        = "map"
+
+  default = {
+    Terraform = "true"
+  }
+}

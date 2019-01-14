@@ -1,10 +1,8 @@
-
-
 /**
  * Usage:
  *
  * module "instance" {
- *   source = "./modules/instances"
+ *   source = "./modules/instance"
  *   
  *   # Global
  *   aws_region        = "${var.aws_region}"
@@ -22,20 +20,6 @@
  *
  * }
  */
-
-variable "aws_region" {}
-variable "env" {}
-variable "vpc_id" {}
-variable "security_group_id" {}
-variable "instance_type" {}
-variable "ebs_optimized" {}
-
-variable "public_subnets" {
-  description = "Public subnet used for the Jenkins master"
-  type = "list"
-}
-
-variable "path_public_key" {}
 
 resource "aws_key_pair" "jenkins-master-keypair" {
   key_name   = "jenkins-master-keypair-${var.env}"
@@ -58,34 +42,12 @@ module "jenkins_master_ec2" {
   # Public SSH key
   key_name = "${aws_key_pair.jenkins-master-keypair.key_name}"
 
-  # user data
+  # User data
   user_data = "${data.template_cloudinit_config.cloudinit-jenkins-master.rendered}"
 
-  # Metadata
-  tags {
-    Terraform    = "true"
-    Name         = "jenkins-master-ec2-${var.env}"
-    Environmnent = "${var.env}"
-  }
-
-}
-
-output "instance_id" {
-  description = "EC2 instance ID"
-  value       = "${module.jenkins_master_ec2.id[0]}"
-}
-
-output "instance_public_ip" {
-  description = "Public IP assigned to the EC2 instance"
-  value       = "${module.jenkins_master_ec2.public_ip[0]}"
-}
-
-output "instance_public_dns" {
-  description = "Public DNS assigned to the EC2 instance"
-  value       = "${module.jenkins_master_ec2.public_dns[0]}"
-}
-
-output "instance_az" {
-  description = "Availability Zone where the EC2 instance is running"
-  value       = "${module.jenkins_master_ec2.availability_zone}"
+  # Tags
+  tags = "${merge(var.tags, map(
+    "Name", "jenkins-master-ec2-${var.env}",
+    "Environment", "${var.env}"
+  ))}"
 }

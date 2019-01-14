@@ -9,11 +9,11 @@ resource "aws_ami_copy" "amzn2_encrypted_ami" {
   source_ami_region = "${var.aws_region}"
   encrypted         = "true"
 
-  tags {
-    Terraform    = "true"
-    Name         = "jenkins-master-ami-encrypted-${var.env}"
-    Environmnent = "${var.env}"
-  }
+  # Tags
+  tags = "${merge(var.tags, map(
+    "Name", "jenkins-master-ami-encrypted-${var.env}",
+    "Environment", "${var.env}"
+  ))}"
 }
 
 #################
@@ -26,6 +26,7 @@ data "aws_ami" "amzn2" {
 
   filter {
     name = "name"
+
     values = [
       "amzn2-ami-hvm-*-x86_64-gp2",
     ]
@@ -33,6 +34,7 @@ data "aws_ami" "amzn2" {
 
   filter {
     name = "owner-alias"
+
     values = [
       "amazon",
     ]
@@ -45,6 +47,7 @@ data "aws_ami" "amzn2_minimal" {
 
   filter {
     name = "name"
+
     values = [
       "amzn2-ami-minimal-hvm-*-x86_64-ebs",
     ]
@@ -52,6 +55,7 @@ data "aws_ami" "amzn2_minimal" {
 
   filter {
     name = "owner-alias"
+
     values = [
       "amazon",
     ]

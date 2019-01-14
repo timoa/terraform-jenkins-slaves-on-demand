@@ -15,8 +15,7 @@ data "template_file" "nginx-script" {
 }
 
 data "template_cloudinit_config" "cloudinit-jenkins-master" {
-
-  gzip = false
+  gzip          = false
   base64_encode = false
 
   # 1. Pre-configure the Jenkins master instance
@@ -43,5 +42,4 @@ data "template_cloudinit_config" "cloudinit-jenkins-master" {
     content_type = "text/x-shellscript"
     content      = "${data.template_file.nginx-script.rendered}"
   }
-
 }
