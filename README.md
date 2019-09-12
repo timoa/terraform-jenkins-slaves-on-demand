@@ -107,12 +107,12 @@ This variables can be changed under the `variables.tf` file.
 
 * Terraform backend with S3 + lock
 * Add EC2 health check URL for the Jenkins master
+* Encrypt the AMI with the new AWS API
 * Encrypt EFS in transit (SSL)
-* Mount the EFS volume
+* Mount the EFS volume when ready (can take up to 25 min to be provisionned)
 * Configure Jenkins with the necessary plugins
-* Create the Jenkins master IAM role (EC2 full access) to be able to create the slaves on-demand
+* Create a separate Jenkins master IAM role to create the slaves on-demand
 * Create the Jenkins slaves AMI
-* Create Elastic IP for the Jenkins master
 * Let's Encrypt SSL certificate for the Jenkins master
 * Use an existing VPC ID
 * Use an existing EFS ID
