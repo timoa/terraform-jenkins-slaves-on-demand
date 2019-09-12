@@ -25,7 +25,7 @@ Configuration of a Jenkins master with slaves on-demand (AWS EC2 only for now).
 #### Jenkins slaves
 
 * Private subnet
-* Security groups to allow only access from the Jenkins instance
+* Security groups to allow only access from the Jenkins master
 
 ### Instances
 
@@ -87,21 +87,21 @@ This variables can be changed under the `variables.tf` file.
 
 | Variable | Default value | Description |
 |----------|---------------|-------------|
-| aws_region | us-east-1 | AWS Region |
-| env | dev | Name of the environment |
-| vpc_cidr | 10.0.0.0/16 | VPC CIDR |
-| public_subnet | 10.0.1.0/24 | Public subnet |
-| private_subnet | 10.0.2.0/24 | Private subnet |
-| instance_type | t3.large | Instance type |
-| ebs_optimized | true | EBS optimized |
-| path_public_key | jenkins-master-key.pub | Path to the SSH public key for Jenkins master |
+| `aws_region` | `us-east-1` | AWS Region |
+| `env` | `dev` | Name of the environment |
+| `vpc_cidr` | `10.0.0.0/16` | VPC CIDR |
+| `public_subnet` | `10.0.1.0/24` | Public subnet |
+| `private_subnet` | `10.0.2.0/24` | Private subnet |
+| `instance_type` | `t3.large` | Instance type |
+| `ebs_optimized` | `true` | EBS optimized |
+| `path_public_key` | `jenkins-master-key.pub` | Path to the SSH public key for Jenkins master |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| jenkins_master_public_ip | Jenkins master public IP |
-| jenkins_master_public_dns | Jenkins master public DNS |
+| `jenkins_master_public_ip` | Jenkins master public IP |
+| `jenkins_master_public_dns` | Jenkins master public DNS |
 
 ## TODO
 
