@@ -23,6 +23,7 @@ resource "aws_ami_copy" "amzn2_encrypted_ami" {
 # Latest Amazon Linux 2 AMI with SSD (GP2)
 data "aws_ami" "amzn2" {
   most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name = "name"
@@ -44,6 +45,7 @@ data "aws_ami" "amzn2" {
 # Latest Amazon Linux 2 AMI minimal (For the Jenkins slaves)
 data "aws_ami" "amzn2_minimal" {
   most_recent = true
+  owners      = ["amazon"]
 
   filter {
     name = "name"
