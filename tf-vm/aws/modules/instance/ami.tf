@@ -5,14 +5,14 @@
 resource "aws_ami_copy" "amzn2_encrypted_ami" {
   name              = "jenkins-master-ami-encrypted-${var.env}"
   description       = "Encrypted root ami based on ${data.aws_ami.amzn2.id} for the Jenkins master"
-  source_ami_id     = "${data.aws_ami.amzn2.id}"
-  source_ami_region = "${var.aws_region}"
+  source_ami_id     = data.aws_ami.amzn2.id
+  source_ami_region = var.aws_region
   encrypted         = "true"
 
   # Tags
   tags = "${merge(var.tags, map(
     "Name", "jenkins-master-ami-encrypted-${var.env}",
-    "Environment", "${var.env}"
+    "Environment", var.env
   ))}"
 }
 

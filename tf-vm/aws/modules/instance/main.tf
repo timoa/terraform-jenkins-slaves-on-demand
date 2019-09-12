@@ -32,22 +32,22 @@ module "jenkins_master_ec2" {
   instance_count = 1
 
   name                        = "jenkins-master-ec2-${var.env}"
-  ami                         = "${aws_ami_copy.amzn2_encrypted_ami.id}"
-  instance_type               = "${var.instance_type}"
-  subnet_id                   = "${var.public_subnets[0]}"
-  vpc_security_group_ids      = ["${var.security_group_id}"]
+  ami                         = aws_ami_copy.amzn2_encrypted_ami.id
+  instance_type               = var.instance_type
+  subnet_id                   = var.public_subnets[0]
+  vpc_security_group_ids      = [var.security_group_id]
   associate_public_ip_address = true
-  ebs_optimized               = "${var.ebs_optimized}"
+  ebs_optimized               = var.ebs_optimized
 
   # Public SSH key
-  key_name = "${aws_key_pair.jenkins-master-keypair.key_name}"
+  key_name = aws_key_pair.jenkins-master-keypair.key_name
 
   # User data
-  user_data = "${data.template_cloudinit_config.cloudinit-jenkins-master.rendered}"
+  user_data = data.template_cloudinit_config.cloudinit-jenkins-master.rendered
 
   # Tags
   tags = "${merge(var.tags, map(
     "Name", "jenkins-master-ec2-${var.env}",
-    "Environment", "${var.env}"
+    "Environment", var.env
   ))}"
 }
