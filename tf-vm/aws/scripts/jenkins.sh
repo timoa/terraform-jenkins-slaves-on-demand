@@ -2,6 +2,9 @@
 
 set -ex
 
+# Refresh the Yum repositories and install updates
+yum update -y
+
 # Install Java 8 and cleanup older default version
 yum install -y java-1.8.0
 yum remove java-1.7.0-openjdk
