@@ -15,8 +15,8 @@ module "efs" {
   encrypted = true
 
   # Tags
-  tags = "${merge(var.tags, map(
+  tags = merge(var.tags, map(
     "Name", "jenkins-efs-${var.env}",
     "Environment", var.env
-  ))}"
+  ))
 }

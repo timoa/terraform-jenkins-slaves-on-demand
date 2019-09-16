@@ -46,8 +46,8 @@ module "jenkins_master_ec2" {
   user_data = data.template_cloudinit_config.cloudinit-jenkins-master.rendered
 
   # Tags
-  tags = "${merge(var.tags, map(
+  tags = merge(var.tags, map(
     "Name", "jenkins-master-ec2-${var.env}",
     "Environment", var.env
-  ))}"
+  ))
 }

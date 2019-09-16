@@ -99,8 +99,8 @@ module "jenkins_slaves_sg" {
   ]
 
   # Tags
-  tags = "${merge(var.tags, map(
+  tags = merge(var.tags, map(
     "Name", "jenkins-slaves-sg-${var.env}",
     "Environment", var.env
-  ))}"
+  ))
 }
