@@ -116,6 +116,8 @@ This variables can be changed under the `variables.tf` file.
 * Let's Encrypt SSL certificate for the Jenkins master
 * Use an existing VPC ID
 * Use an existing EFS ID
+* Install and configure Prometheus Node Exporter for monitoring
+* Install and configure Logstash and export logs to an Elasticsearch instance
 
 [badge-license]: https://img.shields.io/badge/License-MIT-blue.svg
 [link-license]: https://raw.githubusercontent.com/timoa/terraform-jenkins-slaves-on-demand/master/LICENSE
