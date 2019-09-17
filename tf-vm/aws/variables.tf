@@ -1,4 +1,10 @@
 #################
+# YOUR EXTERNAL IP
+#################
+# For security reason, the Jenkins Master access will be limited to your external IP
+variable "office_public_ip" {}
+
+#################
 # Global
 #################
 

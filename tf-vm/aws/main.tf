@@ -14,6 +14,9 @@ module "network" {
   public_subnet  = var.public_subnet
   private_subnet = var.private_subnet
 
+  # Security Group
+  office_public_ip = var.office_public_ip
+
   tags = var.tags
 }
 

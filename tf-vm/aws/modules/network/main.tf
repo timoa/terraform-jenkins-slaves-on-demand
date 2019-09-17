@@ -13,6 +13,9 @@
  *   public_subnet     = var.public_subnet
  *   private_subnet    = var.private_subnet
  *
+ *   # Security Group
+ *   office_public_ip  = var.office_public_ip
+ *
  * }
  */
 module "vpc" {
@@ -31,29 +34,34 @@ module "vpc" {
   enable_vpn_gateway   = false
 
   # Tags
-  tags = "${merge(var.tags, map(
+  tags = merge(var.tags, map(
     "Name", "jenkins-vpc-${var.env}",
     "Environment", var.env
-  ))}"
+  ))
 }
 
 module "jenkins_master_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "jenkins-master-sg-${var.env}"
-  description = "Security group that allows Jenkins master access and all egress traffic"
+  description = "Security group that allows Jenkins master access only and all egress traffic"
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
     {
       rule        = "http-80-tcp"
-      description = "Jenkins master HTTP port"
-      cidr_blocks = "0.0.0.0/0"
+      description = "From the office only"
+      cidr_blocks = "${var.office_public_ip}/32"
     },
     {
       rule        = "https-443-tcp"
-      description = "Jenkins master HTTPS port"
-      cidr_blocks = "0.0.0.0/0"
+      description = "From the office only"
+      cidr_blocks = "${var.office_public_ip}/32"
+    },
+    {
+      rule        = "ssh-tcp"
+      description = "From the office only"
+      cidr_blocks = "${var.office_public_ip}/32"
     },
   ]
 
@@ -68,16 +76,16 @@ module "jenkins_master_sg" {
   ]
 
   # Tags
-  tags = "${merge(var.tags, map(
+  tags = merge(var.tags, map(
     "Name", "jenkins-master-sg-${var.env}"
-  ))}"
+  ))
 }
 
 module "jenkins_slaves_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   name        = "jenkins-slaves-sg-${var.env}"
-  description = "Security group that allows Jenkins master access only and all egress traffic"
+  description = "Security group that allows Jenkins master subnet access (for monitoring later) and all egress traffic"
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
