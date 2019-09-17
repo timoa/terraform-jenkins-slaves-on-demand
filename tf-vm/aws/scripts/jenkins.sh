@@ -14,7 +14,17 @@ yum install -y jenkins
 
 # TODO: Configure the path to /mnt/efs
 # TODO: Pre-configure Jenkins
-# TODO: Install required plugins (EC2)
+
+export JENKINS_URL="http://localhost:8080"
+export JENKINS_USER_ID="ec2-user"
+export JENKINS_API_TOKEN=$(cat /var/lib/jenkins/secrets/initialAdminPassword)
+
+# Get the Jenkins CLI
+wget $JENKINS_URL/jnlpJars/jenkins-cli.jar
+
+# Install required plugins (ignore error if it failed)
+java -jar jenkins-cli.jar install-plugin ec2-plugin || true
+java -jar jenkins-cli.jar install-plugin greenballs || true
 
 # Start Jenkins
 service jenkins start
